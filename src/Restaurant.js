@@ -35,7 +35,47 @@ class Restaurant {
       h5.innerText = this.rating
       span.innerText = 'Its availabile for reservation'
       pLocation.innerText = this.location
-      reserveButton.innerText = "Make a Reservation"
+      reserveButton.innerText = `Would you Like to reserve ${this.name} restaurant?`
+
+
+      reserveButton.addEventListener('click', ()=>{
+        let form = document.createElement('form')
+        let dateInput = document.createElement('input')
+        let label = document.createElement('label')
+        let submitButton = document.createElement('button')
+
+        submitButton.innerText = 'Make Reservation'
+        dateInput.type = 'date'
+        label.for = dateInput
+        label.innerText = 'Pick a date'
+        form.dataset.id = this.id
+
+        form.append(label, dateInput, submitButton)
+         let div = document.querySelector('.detail')
+         div.append(form)
+
+         form.addEventListener('submit',function () {
+           event.preventDefault()
+           let data = {
+             restaurant_id: this.dataset.id,
+             user_id: 1,
+             time_date: dateInput.value
+          }
+           fetch('http://localhost:3000/reservations', {
+             method: "POST",
+             headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+              },
+              body: JSON.stringify(data)
+            }).then(res => res.json()).then( rt => console.log(rt))
+            form.reset()
+
+         })
+
+      })
+
+
 
       div.append(h2,img,pCuisine,h5,span,pLocation,reserveButton)
 
