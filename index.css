@@ -1,0 +1,19 @@
+
+.over-all{
+  display: flex;
+}
+ .wrapper {
+
+margin: 100px;
+}
+
+.detail{
+  margin: 100px;
+}
+
+.small-image {
+  height: auto;
+  width: auto;
+  max-width: 300px;
+  max-height: 300px;
+}
