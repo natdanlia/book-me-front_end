@@ -68,8 +68,19 @@ class Restaurant {
               Accept: "application/json"
               },
               body: JSON.stringify(data)
-            }).then(res => res.json()).then( rt => console.log(rt))
-            form.reset()
+            }).then(res => res.json())
+            .then(newRes => {
+              let div = document.querySelector('.detail')
+              let p = document.createElement('p')
+              debugger
+              p.innerText = `Thank you ${newRes.user.name} for making reservation at our beautiful restaurant, we will see you on ${newRes.time_date}.`
+
+              div.append(p)
+
+
+            })
+
+
 
          })
 
