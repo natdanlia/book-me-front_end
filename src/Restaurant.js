@@ -13,7 +13,7 @@ class Restaurant {
 
   renderRestaurant() {
     let div = document.createElement('div')
-    div.className = 'restaurant-card'
+    div.className = 'ui card'
 
     div.addEventListener('click', () => {
       let div = document.querySelector('.detail')
@@ -56,9 +56,12 @@ class Restaurant {
 
          form.addEventListener('submit',function () {
            event.preventDefault()
+           let uId = document.querySelector('div.user-card h3').dataset.id
+           debugger;
            let data = {
+
              restaurant_id: this.dataset.id,
-             user_id: 1,
+             user_id: uId,
              time_date: dateInput.value
           }
            fetch('http://localhost:3000/reservations', {
@@ -93,6 +96,11 @@ class Restaurant {
     })
 
     let h2 = document.createElement('h2')
+    h2.className = 'header'
+    let contentDiv = document.createElement('div')
+    contentDiv.className = 'content'
+    let imageDiv = document.createElement('div')
+    imageDiv.className="image"
     let img = document.createElement('img')
     let pCuisine = document.createElement('p')
     let h5 = document.createElement('h5')
@@ -111,9 +119,12 @@ class Restaurant {
 
 
     // let wrapper = document.getElementById('wrapper')
+    contentDiv.append(h2,pCuisine,h5,pCity)
 
     wrapper.append(div)
-    div.append(h2,img,pCuisine,h5,pCity)
+    imageDiv.append(img)
+    div.append(imageDiv, contentDiv)
+    // div.append(h2,img,pCuisine,h5,pCity)
 
 
 
